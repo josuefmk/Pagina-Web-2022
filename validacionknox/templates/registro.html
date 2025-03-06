@@ -1,0 +1,145 @@
+{% load rest_framework %}{%load static%}{% load socialaccount %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoBots Motors</title>
+    <link rel="shortcut icon" href="{%static 'suscripciones/img/logosolo.png'%}" type="image/x-icon">
+    <link rel="stylesheet" href="{%static 'suscripciones/css/estilos.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Smooch+Sans:wght@100;500;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+</head>
+
+<body class="registro">
+    <header>
+        <nav class="navbar navbar-expand-lg">
+            <a class="navbar-brand col-4" href="#">
+                <img src="{%static 'suscripciones/img/logo3-1_2.png'%}" width="120" alt="">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"><i class="fa-solid fa-bars"></i></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end mr-4" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item active mx-4"><a class="nav-link font-weight-bold" href={% url 'home' %}>Inicio</a></li>
+                    <li class="nav-item mx-4"><a class="nav-link font-weight-bold" href={% url 'detalles' %}>Suscripci&oacute;n</a></li>
+                    {% if user.is_authenticated %}
+                    <li class="nav-item active mx-2"><a class="nav-link font-weight-bold" href="{% url 'tienda' %}"><i class="fa-solid fa-cart-shopping"></i></a></li>
+                    {% endif %} {% if user.is_staff %}
+                    <li class="nav-item active mx-1">
+                        <div class="dropdown">
+                            <button class="btn btn-warning btn-lg font-weight-bold dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
+                                Administraci&oacute;n Web
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+
+                                <a class="dropdown-item" href="{% url 'form_lista' %}">API Local</a>
+                                <a class="dropdown-item" href="{% url 'listarapi' %}">API Web</a>
+                    </li>
+                    {% endif %}
+                    <li class="nav-item active mx-5">
+                        <div class="dropdown">
+                            <button class="btn btn-warning btn-lg font-weight-bold dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
+                                Sesi&oacute;n
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                {% if user.is_authenticated %}
+                                <a class="dropdown-item" href="{% url 'logout2' %}">Cerrar Sesi&oacute;n</a> {% else %}
+                                <a class="dropdown-item" href="{% url 'login2' %}">Inicio Sesi&oacute;n</a>
+                                <a class="dropdown-item" href="{% url 'registro'%}">Registrarse</a>{% endif %}
+                    </li>
+                </ul>
+                </div>
+        </nav>
+    </header>
+
+    <div class="fondoinicioregistro">
+        <div class="container ontop">
+            <br>
+            <br>
+            <br>
+            <br>
+            <div class="login-wrap">
+                <div class="login-html">
+                    <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Registro</label>
+                    <form id="form-registro" action="{% url 'registro-valida' %}" class="" method="post" novalidate>
+
+                        {% csrf_token %} {% render_form serializer template_pack='rest_framework/vertical' %}
+                        <div id="error-registro">
+                        </div>
+                        <div class="hr2"></div>
+                        <button type="submit" class="btn btn-warning btn-md font-weight-bold">Registrarse</button> {% if user.is_authenticated %}
+                        <p>Welcome, You are logged in as {{ user.username }}</p>
+                        {% else %}
+                        <br>
+                        <br>
+                        <div class="google-btn">
+                            <div class="google-icon-wrapper">
+                                <img class="google-icon" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" />
+                            </div>
+                            <a href="{% provider_login_url 'google' %}" class="btn-text">
+                                <p>Sign in with google</p>
+                            </a> {% endif %}
+                    </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <footer class="pie-footer">
+            <div class="grupo1 container">
+                <div class="box1">
+                    <a href="#" target="_blank">
+                        <img src="{%static 'suscripciones/img/logosolo.png'%}" alt="">
+                    </a>
+                </div>
+                <div class="box2">
+                    <h3>Sobre Nosotros</h3>
+                    <p>Somos una empresa que cuenta con un equipo de mec&aacute;nicos cualificados para convertir en autos antiguos y comunes en unas maquinas altamentes eficientes en caminos o carreteras</p>
+                </div>
+                <div class="box3">
+                    <h3>CONTACTOS</h3>
+                    <ul>
+                        <li>
+                            <i><a href="#" class="fa-brands fa-instagram"></a>  AutoBotsCL</i>
+
+                        </li>
+                        <li>
+                            <i>  <a href="https://api.whatsapp.com/send?phone=+56954170539" class="fa-brands fa-whatsapp"  target="_blank"></a>   Whatsapp<i></i>
+                        </li>
+                        <li>
+                            <i class="#"><a href="{% url 'formularioo' %}">Cont&aacute;ctanos AC&Aacute;</a></i>
+
+                        </li>
+
+                    </ul>
+
+                </div>
+            </div>
+            <p class="text-center py-2"><small>&copy; AutoBots Motors </small></p>
+        </footer>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+        <script src="{%static 'suscripciones/js/validaciones.js' %}"></script>
+</body>
+
+</html>

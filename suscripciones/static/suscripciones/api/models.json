@@ -1,0 +1,25 @@
+{
+    "mecanicos": [{
+            "id": 1,
+            "nombre": "Juan Lopez",
+            "edad": "35 Años",
+            "telefono": "+56964456576",
+            "imagen": "/static/suscripciones/img/Juan%20Lopez.jpg"
+        },
+        {
+            "id": 2,
+            "nombre": "Patricio Gonzalez",
+            "edad": "40 Años",
+            "telefono": "+56954347687",
+            "imagen": "/static/suscripciones/img/mecanico1.jpg"
+        },
+        {
+            "id": 3,
+            "nombre": "Carmen Perez",
+            "edad": "32 Años",
+            "telefono": "+56989765456",
+            "imagen": "/static/suscripciones/img/mecanico2.jpg"
+        }
+
+    ]
+}
